@@ -1,0 +1,13 @@
+1. My idea was that once an order was canceled, I would reset the bakers while saving a copy of 
+the modified bakerlist. Then I used a function assignOrders which would assign orders to bakers
+based on the availability for each baker (used a sorting function for this)
+
+2. We can use a load balancer which will process the orders that were submitted concurrently
+and design some kind of system that will check the hours to see if they fit within the baker's
+availability. We can also find a way to prioritize the most amount of hours based on
+availability of the bakers and reject jobs that exceed this amount. Multiple offers will
+produce more money (assuming these jobs all cost the same).
+
+3. Assuming productivities means bakers being specialized in certain tasks, we can further
+implement a system that allows bakers to only take certain jobs they are specialized in. 
+If no specialized jobs comes up they can take another task in the meantime.
