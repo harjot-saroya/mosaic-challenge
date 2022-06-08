@@ -26,9 +26,8 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/getOrders', (req, res) => {
-    console.log(globalBakers)
     const getOrders = [...globalBakers.bakers].map((baker) => {
-        const orders = baker.orders.map(orderId => globalBakers.orders.find(order => orderId === order.id));
+        const orders = baker.orders.map(orderId => globalBakers.orders.find(order => orderId === Object.keys(order)[0]));
         return { ...baker, orders }
     })
 
@@ -51,11 +50,10 @@ app.post('/addOrder', async (req, res) => {
 
 app.delete('/cancelOrder/:id', (req, res) => {
     const selectedId = req.params['id']
-    console.log(selectedId)
+
     const updatedQueue = globalBakers.orders.filter((item) => {
         return Object.keys(item)[0] !== selectedId
     })
-    console.log(updatedQueue, globalBakers.orders)
     if (updatedQueue.length === globalBakers.orders.length) {
         return res.status(404).json('Order id not found')
     }
